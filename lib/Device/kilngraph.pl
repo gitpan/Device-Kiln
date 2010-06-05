@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 use Device::Kiln;
+use Device::Kiln::Orton;
 use strict;
 use CGI;      # or any other CGI:: form handler/decoder
 use CGI::Ajax;
@@ -158,21 +159,20 @@ sub Show_HTML {
 	</TD>
 	<TD>
 	Last 100C(Degrees C/hour) <select name=conerate onchange='newImage()'>
+	<option value=15>15</option>
 	<option value=60>60</option>
-	<option value=100>100</option>
 	<option value=150>150</option>
 	</select>
 	</TD>
 	<TD>
 	Cone 	<select name=cone onchange='newImage()'>";
 	
-	my $cones = %$meter->{cones};
-	
-	
-	foreach my $coneconfig ( sort keys %$cones ) {
-		my @conetxt = split(/ /,$coneconfig);
-		my $conedescr = $conetxt[2];
-		$html .= "<option value = '$coneconfig'>$conedescr\n";
+	my $cones = Device::Kiln::Orton->hashref();
+		foreach my $coneconfig ( 
+			sort { $cones->{$a}->{seqnum} <=> $cones->{$b}->{seqnum} }  keys %$cones 
+	) {
+		
+		$html .= "<option value = '$coneconfig'>$coneconfig\n";
 	}
 	
 	$html .= "

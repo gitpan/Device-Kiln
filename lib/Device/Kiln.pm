@@ -1,6 +1,7 @@
 package Device::Kiln;
 
 use Device::DSE::Q1573;
+use Device::Kiln::Orton;
 use SVG::TT::Graph::TimeSeries;
 use HTTP::Date qw(time2iso str2time);
 use Data::Dumper;
@@ -11,7 +12,7 @@ BEGIN {
 	require Device::DSE::Q1573;
 	use Exporter ();
 	use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-	$VERSION     = '0.01';
+	$VERSION     = '0.02';
 	@ISA         = qw(Exporter);
 	@EXPORT      = qw();
 	@EXPORT_OK   = qw();
@@ -118,7 +119,8 @@ sub graph {
 	my ($startperiod, $startvalue);
 	
 	
-	$config->{conemax} = $self->{cones}->{$config->{cone}}->{$config->{conerate}};
+	$config->{conemax} = Device::Kiln::Orton->hashref()->{$config->{cone}}->{$config->{conerate}};
+	#$config->{conemax} = $self->{cones}->{$config->{cone}}->{$config->{conerate}};
 	
 
 	#@data = ( [ time2iso(), $self->{value} ] );
@@ -369,8 +371,8 @@ Device::Kiln - Graph kiln firing use Data logged from Device::DSE::Q1573
 
 =head1 SYNOPSIS
 
-  use Device::DSE::Q1573::Plotter;
-  my $meter = Device::DSE::Q1573::Plotter->new("/dev/ttyS0");
+  use Device::Kiln;
+  my $meter = Device::Kiln->new("/dev/ttyS0");
   
 
 
@@ -383,9 +385,9 @@ at regular intervals.
 
 =head2 new(serialport)
 
- Usage     : my $meter=Device::DSE::Q1573::Plotter->new("/dev/ttyS0")
+ Usage     : my $meter=Device::Kiln->new("/dev/ttyS0")
  Purpose   : Opens the meter on the specified serial port
- Returns   : object of type Device::DSE::Q1573::Plotter
+ Returns   : object of type Device::Kiln
  Argument  : serial port
  
 =head2 rawread();
@@ -397,7 +399,7 @@ at regular intervals.
 
 use Device::DSE::Q1573;
 
-my $meter = Device::DSE::Q1573::Plotter->new( "/dev/ttyS0" );
+my $meter = Device::Kiln->new( "/dev/ttyS0" );
 
 while(1) {
 	my $data = $meter->read();
