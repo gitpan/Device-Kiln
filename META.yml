@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Device-Kiln
-version:            0.02
+version:            0.03
 abstract:           Plot Graph of values from Q1573 over time.
 author:
     - David Peters (davidp@electronf.com)
@@ -11,6 +11,8 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
+    Device::DSE::Q1573:   0.01
+    Device::Kiln::Orton:  0.01
     HTTP::Date:           0
     SVG:                  0.01
     SVG::TT::Graph::TimeSeries:  0

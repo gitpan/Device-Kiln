@@ -4,7 +4,7 @@ use Device::DSE::Q1573;
 use Device::Kiln::Orton;
 use SVG::TT::Graph::TimeSeries;
 use HTTP::Date qw(time2iso str2time);
-use Data::Dumper;
+
 
 use strict;
 
@@ -12,7 +12,7 @@ BEGIN {
 	require Device::DSE::Q1573;
 	use Exporter ();
 	use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-	$VERSION     = '0.02';
+	$VERSION     = '0.03';
 	@ISA         = qw(Exporter);
 	@EXPORT      = qw();
 	@EXPORT_OK   = qw();

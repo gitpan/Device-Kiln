@@ -188,7 +188,8 @@ sub Show_HTML {
 <TABLE BORDER=1>
 <TR>
 <TD>
-	<iframe id='kilngraph' width=1024 height=600 >	</iframe>
+	<iframe id='kilngraph' width=1024 height=600 >
+	</iframe>
 </TD>
 <TD VALIGN=TOP>
 	<TABLE VALIGN='top'>

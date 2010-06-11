@@ -18,6 +18,8 @@ WriteMakefile(
                      'Test::Simple' => 0.44,
                      'SVG' => 0.01,
                      'SVG::TT::Graph::TimeSeries' => 0,
-                     'HTTP::Date' => 0
+                     'HTTP::Date' => 0,
+                     'Device::DSE::Q1573' => 0.01,
+                     'Device::Kiln::Orton' => 0.01,
                     },
 );
